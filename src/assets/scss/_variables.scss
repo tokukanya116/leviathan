@@ -1,0 +1,103 @@
+// 变量
+// style里质保李实现实例
+
+$colors: (
+  "primary": #db9e3f,
+  "info": #4b67af,
+  "white": #fff,
+  "black": #000,
+  "dark": #222,
+  "dark-1": #343440,
+  "grey": #999,
+  "grey-1": #666,
+  "light": #f9f9f9,
+  "light-1": #d4d9de,
+);
+
+//font-size
+$base-font-size: 1rem;
+$font-sizes: (
+  // 8px
+    xxs: 0.6154,
+  //10px
+    xs: 0.7692,
+  //12px
+    sm: 0.9231,
+  //13px
+    md: 1,
+  //14px
+    lg: 1.0769,
+  //16px
+    xl: 1.2308
+);
+
+//border
+$border-color: map-get($colors, "light-1");
+
+// justify-content
+$flex-jc: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+);
+
+// align-item
+$flex-ai: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch,
+);
+
+//spacing
+// 间隔类型
+$spacing-types: (
+  m: margin,
+  p: padding,
+);
+// 间隔方向
+$spacing-directions: (
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
+);
+//基础间隔
+$spacing-base-size: 1rem;
+// 间隔等级
+$spacing-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3,
+);
+
+// 精灵图属性
+$sprite-attr: (
+  // 5个属性,分别对应:类名,宽,高,图片定位x,y,false表示不使用自己添加的iconfont
+  ("blz",  1.8462, 1.8462, 63.546%, 15.517%, false),
+  ("gsz", 1.7692, 1.5385, 90.483%, 15.614%, false),
+  ("zbsc", 1.4615, 1.6923, 36.746%, 0.924%, false),
+  ("tyf", 1.5385, 1.5385, 10.408%, 15.517%, false),
+  ("xrzq", 1.5385, 1.6154, 89.733%, 1.266%, false),
+  ("rycc", 1.8462, 1.5385, 36.467%, 15.287%, false),
+  ("wzyd", 1.8462, 1.8462, 63.3%, 0.927%, false),
+  ("gzh", 1.8462, 1.8462, 0, 96.207%, false),
+  ("bbjs", 1.8462, 1.8462, 0, 0, "version-icon", true),
+  ("djhj", 1.8462, 1.8462, 0, 0, "djhj", true),
+  ("wxwzt", 1.8462, 1.8462, 0, 0, "wxwzt", true),
+  ("cyhdy", 1.8462, 1.8462, 0, 0, "cyhdy", true),
+  /*blz,gsz,zbsc,tyf,xrzq,rycc,wzyd,gzh,bbjs,djhj,wxwzt,cyhdy*/
+);
+
+$sptite-bgs-attr: (
+  ("bbjs",2,2),
+  ("djhj",3,2),
+  ("wxwzt",3.5,1.5),
+  ("cyhdy",2.6,2.6),
+);
+

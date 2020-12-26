@@ -1,0 +1,173 @@
+/* 工具类css */
+// 引入变量:在scss里被引用文件名要加 _ ,引用时不用加
+@import "./variables";
+
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-size: 13px;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2rem;
+  background: #f1f1f1;
+  // 平滑处理,字体变细
+  -webkit-font-smoothing: antialised;
+}
+
+a {
+  color: #999;
+}
+// width,height
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+
+//遍历工具类
+// $colorKey=>键,$color=>值
+@each $colorKey, $color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  .bg-#{$colorKey} {
+    background-color: $color;
+  }
+}
+// text-align
+@each $var in(left, center, right) {
+  .text-#{$var} {
+    text-align: $var !important;
+  }
+}
+
+@each $sizeKey, $size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+
+// .flex-1
+.d-flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+@each $key, $val in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $val;
+  }
+}
+
+@each $key, $val in $flex-ai {
+  .ai-#{$key} {
+    justify-content: $val;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+// 实现效果 mt-1
+// 先筛选类型 m
+@each $typeKey, $type in $spacing-types {
+  // 匹配样式: .m-1
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $size * $spacing-base-size;
+    }
+  }
+
+  // 匹配样式: .mx-1
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: $size * $spacing-base-size;
+      #{$type}-right: $size * $spacing-base-size;
+    }
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: $size * $spacing-base-size;
+      #{$type}-bottom: $size * $spacing-base-size;
+    }
+  }
+
+  // 匹配样式: .mt-1
+  // 再选方向 t
+  @each $directionKey, $direction in $spacing-directions {
+    // 最后是等级 1
+    @each $sizeKey, $size in $spacing-sizes {
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: $size * $spacing-base-size;
+      }
+    }
+  }
+}
+
+//button
+.btn {
+  border: none;
+  border-radius: 0.1538rem;
+  // map-get() 查找已存在变量,取得内容
+  font-size: map-get($font-sizes, "sm") * $base-font-size;
+  padding: 0.2rem 0.6rem;
+}
+//nav
+.nav {
+  .nav-item {
+    border-bottom: 3px solid transparent;
+    padding-bottom: 0.2rem;
+    &.active {
+      border-bottom: 3px solid #fff;
+    }
+  }
+}
+
+// sprite 精灵图设置
+.sprite {
+  background: url(../images/index.png) no-repeat 0 0;
+  background-size: 28.8462rem;
+  display: inline-block;
+  height: 1.8462rem;
+  @each $spriteKey, $sprite-w, $sprite-h, $sprite-x, $sprite-y,
+    $bgUrl in $sprite-attr
+  {
+    &.sprite-#{$spriteKey} {
+      width: $sprite-w * $base-font-size;
+      height: $sprite-h * $base-font-size;
+      background-position: $sprite-x $sprite-y;
+
+      // 如果存在自定义的背景链接,则用新的
+      @if $bgUrl != false {
+        width: 100%;
+        height: 1.8462rem;
+        background: url(../images/#{$bgUrl}.png) no-repeat 50% 50%;
+
+        @each $sprite-bgs-name,$sprite-bgs-w, $sprite-bgs-h in $sptite-bgs-attr {
+          // 如果属性类名等于被遍历的类名,绑定对应属性
+          @if $spriteKey==$sprite-bgs-name{
+            background-size: $sprite-bgs-w * $base-font-size $sprite-bgs-h * $base-font-size !important;
+          }
+        }
+      }
+    }
+  }
+  &.sprite-arrow{
+    width: 0.7692rem;
+    height: 0.7692rem;
+    background-position: 38.577% 52.076%;
+  }
+}
